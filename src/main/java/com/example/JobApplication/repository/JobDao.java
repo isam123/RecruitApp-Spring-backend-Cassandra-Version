@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-public interface HomeDao extends CassandraRepository<Job, UUID> {
+public interface JobDao extends CassandraRepository<Job, UUID> {
         List<Job> findJobByTitleLike(String title);
 }

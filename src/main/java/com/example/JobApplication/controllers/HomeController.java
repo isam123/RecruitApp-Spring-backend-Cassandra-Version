@@ -1,71 +1,66 @@
 package com.example.JobApplication.controllers;
 
 import com.example.JobApplication.domain.Job;
-import com.example.JobApplication.repository.HomeDao;
+import com.example.JobApplication.repository.JobDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
-import java.util.UUID;
+import java.util.List;
 
+@CrossOrigin
 @RestController
+@RequestMapping("job")
 public class HomeController {
 
-
-
-   public HomeDao homeDao;
+    public JobDao jobDao;
 
     @Autowired
-    public HomeController(HomeDao homeDao) {
-    this.homeDao = homeDao;
+    public HomeController(JobDao jobDao) {
+    this.jobDao = jobDao;
     }
 
     @GetMapping("/home")
-    public Job Index()
+    public List<Job> Index()
     {
-        Job x = new Job(UUID.randomUUID(),"Front-end");
-        homeDao.save(x);
-        return x;
+
+        return jobDao.findAll();
     }
 
+    @GetMapping("/filter")
+    public Job filter(@RequestParam("query") String query)
+    {
+        Job xs = new Job();
+//        homeDao.save(x);
+        return xs;
+    }
 
-    @GetMapping("/job/list")
+    @GetMapping("/list")
     public Job Show()
     {
-        Job x = new Job(UUID.randomUUID(),"Front-end");
-        homeDao.save(x);
+        Job x = new Job();
+        jobDao.save(x);
         return x;
     }
 
 
-    @GetMapping("/home")
+    @GetMapping("/edit")
     public Job edit()
     {
-        Job x = new Job(UUID.randomUUID(),"Front-end");
-        homeDao.save(x);
+        Job x = new Job();
+        jobDao.save(x);
         return x;
     }
 
 
-
-    @GetMapping("/home")
-    public Job delete()
+    @GetMapping("/edit")
+    public Job insert()
     {
-        Job x = new Job(UUID.randomUUID(),"Front-end");
-        homeDao.save(x);
+        Job x = new Job();
+        jobDao.save(x);
         return x;
     }
 
-
-
-    @GetMapping("/home")
-    public Job update()
-    {
-        Job x = new Job(UUID.randomUUID(),"Front-end");
-        homeDao.save(x);
-        return x;
-    }
 
 
 
